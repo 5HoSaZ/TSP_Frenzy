@@ -4,5 +4,5 @@ def getInput(file):
 
     with open(file) as data:
         numNode = int(next(data))
-        pathCost = np.loadtxt(data)
+        pathCost = np.loadtxt(data, dtype="int")
     return numNode, pathCost
