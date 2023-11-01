@@ -1,6 +1,6 @@
 import logging as log
-import numpy as np
 from ortools.linear_solver import pywraplp
+from GetTSPInput import getInput
 from time import time
 
 # Setting up logger
@@ -11,14 +11,6 @@ log.basicConfig(format="%(levelname)s - %(message)s")
 logger = log.getLogger()
 logger.setLevel(log.DEBUG)
 log.info("Logger initialized...")
-
-
-# Get input from file
-def getInput(file):
-    with open(file) as data:
-        NumNode = int(next(data))
-        PathCost = np.loadtxt(data)
-    return NumNode, PathCost
 
 
 # Print solution
@@ -43,7 +35,6 @@ def printSolutionFromU(U, numNode):
 def TSPMain(numNode, pathCost):
     solver_id = "SCIP"
     solver: pywraplp.Solver = pywraplp.Solver.CreateSolver(solver_id)
-    # inf = solver.infinity()
 
     log.info("Creating " + str(numNode * numNode) + " boolean x_ij variables... ")
     X = {}

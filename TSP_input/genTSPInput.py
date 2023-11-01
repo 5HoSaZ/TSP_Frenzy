@@ -1,10 +1,10 @@
-def createTSPInput(numNode: int, lower: int, upper: int, is_symmetric: str, fname: str):
+def createTSPInput(numNode: int, lb: int, ub: int, is_symmetric: str, fname: str):
     """Create an input for TSP
 
     #### Parameters:
         numNode      (int):  Number of nodes
-        lower        (int):  Lower bound for distance
-        upper        (int):  Upper bound for distance
+        lb           (int):  Lower bound for distance
+        ub           (int):  Upper bound for distance
         is_symmetric (bool): Default True
         fname        (str):  File name
 
@@ -17,8 +17,8 @@ def createTSPInput(numNode: int, lower: int, upper: int, is_symmetric: str, fnam
     import random
 
     # Create non-symmetrical distance matrix
-    def createNonSymInputSize(numNode, lower, upper, filename):
-        with open(filename, "w") as file:
+    def createNonSymInputSize(numNode, lb, ub, fname):
+        with open(fname, "w") as file:
             file.write(str(numNode) + "\n")
             for row in range(numNode):
                 line = ""
@@ -26,28 +26,28 @@ def createTSPInput(numNode: int, lower: int, upper: int, is_symmetric: str, fnam
                     if col == row:
                         line += "0 "
                     else:
-                        line += str(random.randint(lower, upper)) + " "
+                        line += str(random.randint(lb, ub)) + " "
                 file.write(line + "\n")
 
     # Create symmetrical distance matrix
-    def createSymmetricInputSize(numNode, lower, upper, filename):
-        with open(filename, "w") as file:
+    def createSymmetricInputSize(numNode, lb, ub, fname):
+        with open(fname, "w") as file:
             file.write(str(numNode) + "\n")
 
             dMatrix = [[0 for col in range(numNode)] for row in range(numNode)]
             for row in range(numNode):
                 for col in range(numNode):
                     if col > row:
-                        dMatrix[row][col] = random.randint(lower, upper)
+                        dMatrix[row][col] = random.randint(lb, ub)
                     if col < row:
                         dMatrix[row][col] = dMatrix[col][row]
 
                 file.write(" ".join(map(str, dMatrix[row])) + "\n")
 
     if is_symmetric:
-        createSymmetricInputSize(numNode, lower, upper, fname)
+        createSymmetricInputSize(numNode, lb, ub, fname)
     else:
-        createNonSymInputSize(numNode, lower, upper, fname)
+        createNonSymInputSize(numNode, lb, ub, fname)
 
 
 if __name__ == "__main__":

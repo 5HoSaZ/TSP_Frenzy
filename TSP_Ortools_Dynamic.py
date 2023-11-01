@@ -1,6 +1,6 @@
 import logging as log
-import numpy as np
 from ortools.linear_solver import pywraplp
+from GetTSPInput import getInput
 from time import time
 
 # Setting up logger
@@ -11,14 +11,6 @@ log.basicConfig(format="%(levelname)s - %(message)s")
 logger = log.getLogger()
 logger.setLevel(log.DEBUG)
 log.info("Logger initialized...")
-
-
-# Get input from file
-def getInput(file):
-    with open(file) as data:
-        numNode = int(next(data))
-        pathCost = np.loadtxt(data)
-    return numNode, pathCost
 
 
 # Detect subtours from current solution
@@ -36,6 +28,7 @@ def subTourDetector(X):
     while True:
         Nodes.remove(start)
         subTours[-1].append((start, path[start]))
+        # Traverse every nodes
         if Nodes:
             if path[start] in Nodes:
                 start = path[start]
@@ -99,7 +92,7 @@ def TSPMain(numNode, pathCost):
             numSubTour, subTours = subTourDetector(X)
             if numSubTour == 1:
                 print("Optimal objective value ==", solver.Objective().Value())
-                # printSolution(subTours[0])
+                printSolution(subTours[0])
                 break
             else:
                 removeSubTours(solver, X, subTours)

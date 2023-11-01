@@ -1,7 +1,7 @@
 from GetTSPInput import getInput
 from ortools.sat.python import cp_model
 
-NUM_NODES, DISTANCE_MATRIX = getInput("largeTSP.txt")
+NUM_NODES, DISTANCE_MATRIX = getInput("50_nodes.tsp")
 
 
 def main():
