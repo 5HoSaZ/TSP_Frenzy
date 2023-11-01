@@ -1,4 +1,4 @@
-from GetTSPInput import getInput
+from TSP_Input.GetTSPInput import getInput
 from ortools.sat.python import cp_model
 
 NUM_NODES, DISTANCE_MATRIX = getInput("50_nodes.tsp")
