@@ -17,6 +17,6 @@ def getInput(fname):
 
 
 if __name__ == "__main__":
-    numNode, pathCost = getInput("example.tsp")
-    print(numNode)
-    print(pathCost)
+    numNode, pathCost = getInput(r"TSP_Input\example.tsp")
+    print("Nuber of nodes:", numNode)
+    print("Distance matrix:\n", pathCost)
