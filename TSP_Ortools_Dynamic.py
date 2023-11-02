@@ -103,7 +103,7 @@ def TSPMain(numNode, pathCost):
 
 if __name__ == "__main__":
     start = time()
-    numNode, pathCost = getInput("largeTSP.txt")
+    numNode, pathCost = getInput("10.tsp")
     TSPMain(numNode, pathCost)
     end = time()
     print(f"Execution time: {end-start}")

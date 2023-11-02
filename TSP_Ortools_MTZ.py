@@ -74,14 +74,14 @@ def TSPMain(numNode, pathCost):
     if status == pywraplp.Solver.OPTIMAL:
         print("Optimal objective value ==", solver.Objective().Value())
         # printSolutionFromX(X, numNode)
-        # printSolutionFromU(U, numNode)
+        printSolutionFromU(U, numNode)
     else:
         print("UNBOUNDED")
 
 
 if __name__ == "__main__":
     start = time()
-    numNode, PathCost = getInput("largeTSP.txt")
+    numNode, PathCost = getInput("6.tsp")
     TSPMain(numNode, PathCost)
     end = time()
     print(f"Execution time: {end-start}")
