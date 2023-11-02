@@ -81,7 +81,7 @@ def TSPMain(numNode, pathCost):
 
 if __name__ == "__main__":
     start = time()
-    numNode, PathCost = getInput("6.tsp")
+    numNode, PathCost = getInput("10.tsp")
     TSPMain(numNode, PathCost)
     end = time()
     print(f"Execution time: {end-start}")

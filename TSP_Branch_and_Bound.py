@@ -122,7 +122,7 @@ def mainTSP():
     # Root node
     rootNode = RootNode(ROOT_POS)
     best = INF
-    sol = []
+    sol = 0
     pq.push(rootNode)
 
     while not pq.empty():
@@ -130,8 +130,7 @@ def mainTSP():
         if minimum.level == NUM_NODES:
             if minimum.lb <= best:
                 best = minimum.lb
-                print(">>> New best:", best)
-                sol.append(minimum.path)
+                sol = minimum
         elif minimum.lb <= best:
             if minimum.to_traverse:
                 for nxt_pos in minimum.to_traverse:
@@ -140,7 +139,7 @@ def mainTSP():
             elif minimum.level == NUM_NODES - 1:
                 nxtNode = nextNode(minimum, ROOT_POS)
                 pq.push(nxtNode)
-
+    printSolution(sol)
     # printSolution(sol)
 
 
