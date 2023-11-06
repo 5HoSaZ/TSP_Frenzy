@@ -3,7 +3,7 @@ from TSP_Input.GetTSPInput import getInput
 
 # For TSP problem, we have the number of nodes and the distance matrix
 
-NUM_NODES, PATH_COST = getInput("10.tsp")
+NUM_NODES, PATH_COST = getInput("5.tsp")
 INF = float("inf")
 NODES = set(range(NUM_NODES))
 ROOT_POS = 0
@@ -47,7 +47,7 @@ class Node:
         self.to_traverse = to_traverse
 
         # Lower bound
-        self.lb = lb(self)
+        self.lb = update_lb(self)
 
         # Path traveled so far
         self.path = path
@@ -90,7 +90,20 @@ def minPathTo(cur_pos):
     return min
 
 
-def lb(node: Node):
+# def update_lb(node: Node):
+#     if node.parent is None:
+#         return (NUM_NODES - node.level) * minPathFrom(ROOT_POS)
+#     i = node.parent.pos
+#     j = node.pos
+#     return (
+#         node.parent.lb
+#         + PATH_COST[i][j]
+#         + (NUM_NODES - node.level) * minPathFrom(i)
+#         - (NUM_NODES - node.parent.level) * minPathFrom(j)
+#     )
+
+
+def update_lb(node: Node):
     if node.parent is None:
         return sum([(minPathFrom(i) + minPathTo(i)) / 2 for i in NODES])
 

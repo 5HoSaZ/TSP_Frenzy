@@ -10,6 +10,7 @@ log.basicConfig(format="%(levelname)s - %(message)s")
 
 logger = log.getLogger()
 logger.setLevel(log.DEBUG)
+# logger.disabled = True
 log.info("Logger initialized...")
 
 
@@ -46,6 +47,9 @@ def removeSubTours(solver, X, subTours):
     for tour in subTours:
         log.info("Removing subtour")
         solver.Add(sum(X[start_end] for start_end in tour) <= len(tour) - 1)
+    # log.info("Removing subtour")
+    # tour = subTours[0]
+    # solver.Add(sum(X[start_end] for start_end in tour) <= len(tour) - 1)
 
 
 # Print solution
@@ -103,7 +107,7 @@ def TSPMain(numNode, pathCost):
 
 if __name__ == "__main__":
     start = time()
-    numNode, pathCost = getInput("10.tsp")
+    numNode, pathCost = getInput("50.tsp")
     TSPMain(numNode, pathCost)
     end = time()
     print(f"Execution time: {end-start}")
