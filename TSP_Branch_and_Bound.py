@@ -1,5 +1,5 @@
 from heapq import heappush, heappop
-from TSP_Input.GetTSPInput import getInput
+from TSP_Input import getInput
 
 # For TSP problem, we have the number of nodes and the distance matrix
 

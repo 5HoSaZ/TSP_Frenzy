@@ -1,6 +1,6 @@
 import logging as log
 from ortools.linear_solver import pywraplp
-from TSP_Input.GetTSPInput import getInput
+from TSP_Input import getInput
 from time import time
 
 # Setting up logger
